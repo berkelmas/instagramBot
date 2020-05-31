@@ -14,17 +14,37 @@ const instaAccounts = [
   "ekremimamoglu",
   "drfahrettinkoca",
   "acunilicali",
+  "yavasmansur",
+  "rterdogan",
+  "ziyaselcukprofdr",
+  "ilberortayli",
+  "aslienver",
+  "prof.dr.osmanmuftuoglu",
+  "kenansofuoglu",
+  "fatihportakal35",
+  "seymasubasi",
+  "kivanctatlitug",
+  "muratboz",
+  "ezomola",
+  "bensusoral",
+  "sahangokbakar",
+  "iynemliarasbulut",
+  "hazalkaya",
+  "burakozcivit",
+  "evcenf",
+  "beyazitozturk26",
 ];
 
 db.once("open", () => {
-  console.log("DENEME 2");
+  console.log("DENEME 3");
   const main = async () => {
     const { page, browser } = await openBrowser();
     await loginInstagram(page);
 
     for (let i = 0; i < 100; i++) {
-      const selectedProfile = instaAccounts[Math.round(Math.random() * 5)];
-      await page.waitFor(2000);
+      const selectedProfile =
+        instaAccounts[Math.round(Math.random() * instaAccounts.length - 1)];
+      await page.waitFor(5000);
       await explorePeopleFromProfile(selectedProfile, page);
       await page.waitFor(4000);
       await page.reload({ waitUntil: ["networkidle2", "domcontentloaded"] });
