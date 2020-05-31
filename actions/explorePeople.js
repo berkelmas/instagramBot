@@ -21,12 +21,12 @@ export const explorePeopleFromProfile = async (username, page) => {
   }
 
   // AT FIRST 12 ITEMS LOADED.
-  for (let i = 1; i < 26; i = i + 12) {
+  for (let i = 1; i < 300; i = i + 12) {
     await page.evaluate((selector) => {
       const scrollableSection = document.querySelector(selector);
       scrollableSection.scrollTop = scrollableSection.scrollHeight;
     }, "body > div[role='presentation'] > div:nth-child(1) > div:nth-child(2)");
-    await page.waitFor(4000);
+    await page.waitFor(5000);
     try {
       await page.waitForSelector(
         `body > div > div > div > ul > div > li:nth-child(${i + 12})`,
@@ -43,7 +43,7 @@ export const explorePeopleFromProfile = async (username, page) => {
       );
     }
   }
-  for (let i = 1; i < 26; i++) {
+  for (let i = 1; i < 300; i++) {
     const text = await page.evaluate((selector) => {
       const el = document.querySelector(selector);
       return el.textContent;

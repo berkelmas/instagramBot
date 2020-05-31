@@ -7,15 +7,25 @@ import { explorePeopleFromProfile } from "./actions/explorePeople";
 const dotenv = require("dotenv");
 dotenv.config();
 
+const instaAccounts = [
+  "cmylmz",
+  "cezmikalorifer",
+  "hadise",
+  "ekremimamoglu",
+  "drfahrettinkoca",
+  "acunilicali",
+];
+
 db.once("open", () => {
-  console.log("DENEME");
+  console.log("DENEME 2");
   const main = async () => {
     const { page, browser } = await openBrowser();
     await loginInstagram(page);
 
-    // await getProfileData("hadise", page);
-    for (let i = 0; i < 10; i++) {
-      await explorePeopleFromProfile("cezmikalorifer", page);
+    for (let i = 0; i < 100; i++) {
+      const selectedProfile = instaAccounts[Math.round(Math.random() * 5)];
+      await page.waitFor(2000);
+      await explorePeopleFromProfile(selectedProfile, page);
       await page.waitFor(4000);
       await page.reload({ waitUntil: ["networkidle2", "domcontentloaded"] });
       await page.waitFor(4000);
